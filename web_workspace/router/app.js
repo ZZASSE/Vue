@@ -1,19 +1,24 @@
 import router from './router/router.js';
 
+import HeaderComponent from './layouts/header.js';
+import FooterComponent from './layouts/footer.js';
+
 const { createApp } = Vue
 
 let template = `
 <div>
-    <!-- <router-link to="/home">Home</router-link> -->
-    <router-link v-bind:to="{ name : 'home' }">Home</router-link>
-    || <router-link v-bind:to="{path : '/postList'}">전체조회</router-link>
-    || <router-link v-bind:to="{path : '/postInfo'}">단건조회</router-link>
+    <HeaderComponent/>
+    <FooterComponent/>
     <router-view :key="$route.fullPath" />
 </div>
 `;
 
 createApp({
-    template
+    template,
+    components : {
+        HeaderComponent,
+        FooterComponent
+    }
 })
 .use(router)
 .mount('#app');
